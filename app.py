@@ -26,6 +26,8 @@ if src_text or submit:
         st.write('No ID found. Please enter another source code.')
 
 st.write('---')
-st.header('Feature-2')
-text = st.text_area('Enter the text below.' , max_chars=1000000, key='text_elm')
-st.write(text[:1000])
+st.header('Get Array for MQL query')
+elements_str = st.text_area('Enter the elements.' , max_chars=1000000, key='text_elm')
+elements = elements_str.split('\n')
+elements_list = [element for element in elements if element]
+st.write(elements_list)
