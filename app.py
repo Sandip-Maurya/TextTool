@@ -4,7 +4,7 @@ import re
 # st.set_page_config(layout="wide")  # Set Streamlit layout to wide
 
 
-st.set_page_config('Text Tool', layout="wide")
+st.set_page_config('Text Tool')
 st.title('Text Mining Tool!')
 
 st.write('---')
