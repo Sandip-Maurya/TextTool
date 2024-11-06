@@ -78,20 +78,3 @@ if st.button("Search"):
             st.error("Invalid regex pattern.")
     else:
         st.warning("Please enter both the regex pattern and text.")
-
-import streamlit.components.v1 as components
-
-st.title("Embed a Web Page in Streamlit App")
-
-# Specify the URL you want to display
-url = "https://myapi.fyers.in/docsv3#tag/Broker-Config/paths/~1Broker%20Config/put"  # Replace with the desired URL
-
-# Set the dimensions for the iframe
-# height = 600
-# width = 800
-
-# Insert iframe using HTML
-components.html(f"""
-    <iframe src="{url}" style="position:absolute; top:0; left:0; width:100%; height:100%;" frameborder="0"></iframe>
-""", height=700)
-
