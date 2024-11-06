@@ -28,6 +28,51 @@ if src_text or submit:
 st.write('---')
 st.header('Get Array for MQL query')
 elements_str = st.text_area('Enter the elements.' , max_chars=1000000, key='text_elm')
-elements = elements_str.split('\n')
-elements_list = [element for element in elements if element]
-st.write(elements_list)
+
+# Button to trigger action
+submit = st.button("Submit IDs")
+
+if elements_str or submit:
+    elements = elements_str.split('\n')
+    elements_list = [element for element in elements if element]
+    st.write(elements_list)
+else:
+    st.write('Please enter some IDs.')
+
+st.write('---')
+st.header("Regex Search")
+regex_pattern = st.text_input("Enter Regex Pattern:")
+text = st.text_area("Enter Text:")
+
+def regex_search(pattern, text):
+    matches = list(re.finditer(pattern, text))
+    
+    # 3.a List without index
+    list_without_index = [match.group() for match in matches]
+    
+    # 3.b String with '\n' separator
+    string_with_separator = "\n".join(list_without_index)
+    
+    # 3.c List with index (dictionary form)
+    list_with_index = [{"index": match.start(), "value": match.group()} for match in matches]
+    
+    return list_without_index, string_with_separator, list_with_index
+
+if st.button("Search"):
+    if regex_pattern and text:
+        try:
+            list_without_index, string_with_separator, list_with_index = regex_search(regex_pattern, text)
+            
+            # Display results
+            st.subheader("Search Result as List:")
+            st.write(list_without_index)
+            
+            st.subheader("Search Result as String:")
+            st.text(string_with_separator)
+            
+            st.subheader("Search Result as List with Index:")
+            st.write(list_with_index)
+        except re.error:
+            st.error("Invalid regex pattern.")
+    else:
+        st.warning("Please enter both the regex pattern and text.")

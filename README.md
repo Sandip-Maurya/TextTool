@@ -1,1 +1,1 @@
-This project about extracting meaningfull data from texts.
+This project is about extracting meaningfull data from texts.
